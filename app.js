@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.post("/fetch", (req, res) => {
-  const python = spawn("python3", ["script.py"]);
+  const python = spawn("python3", ["enter-point.py"]);
 
   python.stdin.write(JSON.stringify(req.body));
   python.stdin.end();
