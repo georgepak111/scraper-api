@@ -10,6 +10,8 @@ app.post("/fetch", (req, res) => {
   python.stdin.write(JSON.stringify(req.body));
   python.stdin.end();
 
+  console.log(JSON.stringify(req.body))
+
   let result = "";
   let hasResponded = false; // flag to prevent double response
 
