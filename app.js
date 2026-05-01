@@ -18,9 +18,10 @@ app.post("/fetch", (req, res) => {
   python.stdout.on("data", (data) => (result += data));
 
   python.stderr.on("data", (err) => {
+    console.error("Python log:", err.toString()); // shows in Render logs
     if (!hasResponded) {
-      hasResponded = true;
-      res.status(400).send("BAD REQUEST");
+        hasResponded = true;
+        res.status(400).send("BAD REQUEST");
     }
   });
 
