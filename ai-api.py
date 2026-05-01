@@ -26,7 +26,7 @@ EXAMPLE:
 url = "https://openrouter.ai/api/v1/chat/completions"
 
 headers = {
-    "Authorization": "Bearer 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",
+    "Authorization": "Bearer ",
     "Content-Type": "application/json",
 }
 
