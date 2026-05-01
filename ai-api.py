@@ -1,8 +1,8 @@
 import requests
 import json
+import os 
 
-
-
+api_key = os.environ.get("ai_api_key")
 prompt = """
 
 You are a data extraction assistant. Extract all product names and their prices from the raw text below.
@@ -26,7 +26,7 @@ EXAMPLE:
 url = "https://openrouter.ai/api/v1/chat/completions"
 
 headers = {
-    "Authorization": "Bearer ",
+    "Authorization": f"Bearer {ai}",
     "Content-Type": "application/json",
 }
 
