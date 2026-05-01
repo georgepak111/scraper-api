@@ -38,11 +38,19 @@ def clean_html(html_string):
         log(f"Parsing failed: {e}")
         return None
 
+def clean_html_from_file(filename):
+    file = open(filename, "r")
+    soup = BeautifulSoup(file, "html.parser")
+    body_text = soup.body.get_text(separator="\n", strip=True)
+    return(body_text)
+
 def main(url):
-    html = get_html(url)
-    if html is None:
-        print("BAD REQUEST")
-        return
+    # html = get_html(url)
+    # if html is None:
+    #     print("BAD REQUEST")
+    #     return
+
+    html = get_html_from_file("test1.html")
     cleaned = clean_html(html)
     if cleaned is None:
         print("PARSE ERROR")
