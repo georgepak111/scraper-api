@@ -50,7 +50,7 @@ def main(url):
     #     print("BAD REQUEST")
     #     return
 
-    cleaned = get_html_from_file("test1.html")
+    cleaned = clean_html_from_file("test1.html")
     # cleaned = clean_html(html)
     # if cleaned is None:
     #     print("PARSE ERROR")
