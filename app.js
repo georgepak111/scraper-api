@@ -5,17 +5,29 @@ const app = express();
 app.use(express.json());
 
 app.post("/fetch", (req, res) => {
-  const python = spawn("python3", ["enter_point.py"]);
+  const python = spawn("python3", ["script.py"]);
 
-  // Send data to Python via stdin
   python.stdin.write(JSON.stringify(req.body));
   python.stdin.end();
 
   let result = "";
+  let hasResponded = false; // flag to prevent double response
+
   python.stdout.on("data", (data) => (result += data));
 
-  python.on("close", () => res.send(result));
-  python.stderr.on("data", (err) => res.status(400).send("BAD REQUEST"));
+  python.stderr.on("data", (err) => {
+    if (!hasResponded) {
+      hasResponded = true;
+      res.status(400).send("BAD REQUEST");
+    }
+  });
+
+  python.on("close", () => {
+    if (!hasResponded) {
+      hasResponded = true;
+      res.send(result);
+    }
+  });
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"))
