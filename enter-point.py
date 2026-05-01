@@ -1,7 +1,7 @@
 import sys
 import json
 import requests
-from ai-api import analyse
+from ai_api import analyse
 from bs4 import BeautifulSoup
 
 def log(msg):
